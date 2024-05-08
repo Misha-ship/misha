@@ -22,8 +22,7 @@ public function customPaginate(int|null $paginate = 20, int|null $page = 1): Len
     );
 }
 
-public
-function customPaginateWithParentPosts(int|null $paginate = 20, int|null $page = 1, int $amount = 40): LengthAwarePaginator
+public function customPaginateWithParentPosts(int|null $paginate = 20, int|null $page = 1, int $amount = 40): LengthAwarePaginator
 {
     $paginator = $this->customPaginate($paginate, $page);
 
@@ -82,21 +81,18 @@ function customPaginateWithParentPosts(int|null $paginate = 20, int|null $page =
     return $newPaginator;
 }
 
-public
-function getIds()
+public function getIds()
 {
     $ids = $this->postQuery->toBase()->cloneWithout(['select', 'orders', 'groups', 'limit', 'offset']);
     return $ids->distinct('posts.id')->pluck('id');
 }
 
-public
-function getPositionIds()
+public function getPositionIds()
 {
     return $this->postQuery->select('posts.id')->pluck('id');
 }
 
-public
-function defaultGet()
+public function defaultGet()
 {
     return $this->postQuery->get();
 }
